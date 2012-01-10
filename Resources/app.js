@@ -18,9 +18,20 @@ var tab1 = Titanium.UI.createTab({
     window:win1
 });
 
+var url = "http://sz.knesebeck.com/szjson.cgi";
+var json;
+  
+var xhr = Ti.Network.createHTTPClient({
+    onload: function() {
+        // parse the retrieved data, turning it into a JavaScript object
+        json = JSON.parse(this.responseText);
+        // ...
+    }
+});
+
 var label1 = Titanium.UI.createLabel({
 	color:'#999',
-	text:'I am Window 1',
+	text:json["galleries"][1]["numimages"],
 	font:{fontSize:20,fontFamily:'Helvetica Neue'},
 	textAlign:'center',
 	width:'auto'
